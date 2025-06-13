@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e2ecd5a34ca41e48bc045b420d710e8, type: 3}
+  m_Name: SoulCardDatabase
+  m_EditorClassIdentifier: 
+  allSoulCards:
+  - {fileID: 11400000, guid: 073c7cae24576984eb1c91a97cc4aea5, type: 2}
+  - {fileID: 11400000, guid: ae91501b1ccee0a4580832ca4b080f18, type: 2}
+  - {fileID: 11400000, guid: 18e2698499ea5f248ab1bbde5d505192, type: 2}
+  - {fileID: 11400000, guid: 8dd2ebe3a95b668449da6f38e44b3e0e, type: 2}
+  - {fileID: 11400000, guid: 359a92e2caf060c4d85471f837e8a0db, type: 2}

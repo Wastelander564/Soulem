@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 294faa48c35ba80418d89dabd283d672, type: 3}
+  m_Name: CardRarityAssets
+  m_EditorClassIdentifier: 
+  commonSprite: {fileID: -1675800800, guid: 3053a43d143794c41a53aec33c0ab678, type: 3}
+  rareSprite: {fileID: -1886587416, guid: 3053a43d143794c41a53aec33c0ab678, type: 3}
+  veryRareSprite: {fileID: -1335413143, guid: 3053a43d143794c41a53aec33c0ab678, type: 3}
+  epicSprite: {fileID: 581083131, guid: 3053a43d143794c41a53aec33c0ab678, type: 3}
+  mythicalSprite: {fileID: 328076994, guid: 3053a43d143794c41a53aec33c0ab678, type: 3}
