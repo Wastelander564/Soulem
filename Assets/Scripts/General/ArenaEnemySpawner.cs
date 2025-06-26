@@ -40,36 +40,26 @@ public class ArenaEnemySpawner : MonoBehaviour
             if (!roundInProgress)
             {
                 roundInProgress = true;
-
-                // 🕒 Wait 2 seconds before starting the round
-                yield return new WaitForSeconds(2f);
-
-                // 🧹 Clean up lingering enemies and bosses
+            
+                yield return new WaitForSeconds(2f);  // Initial round start delay
                 CleanupEnemies();
-
-                // Determine element(s) for this round
                 ElementalRounds();
 
-                // Spawn enemies
                 int enemiesToSpawn = Random.Range(1, 10) + arenaManager.RoundCount;
+                float startDelay = 0.1f; // First enemy spawns almost instantly
+                float delayIncrement = 0.3f; // Each next enemy spawns slower
+
                 for (int i = 0; i < enemiesToSpawn; i++)
                 {
+                    float currentDelay = startDelay + (i * delayIncrement);
+
+                    // Optionally, cap the delay so it doesn't get too long
+                    currentDelay = Mathf.Min(currentDelay, 5f); // Max 5 seconds between spawns
+
+                    yield return new WaitForSeconds(currentDelay); // Apply dynamic delay
+
                     Vector3 spawnPos = GetRandomSpawnPosition();
-
-                    if (enemyPrefab == null)
-                    {
-                        Debug.LogError("Enemy Prefab is null! Assign it in the inspector.");
-                        yield break;
-                    }
-
                     GameObject enemy = Instantiate(enemyPrefab, spawnPos, Quaternion.identity);
-                    if (enemy == null)
-                    {
-                        Debug.LogError("Failed to instantiate enemy!");
-                        yield break;
-                    }
-
-                    Debug.Log($"Spawned enemy: {enemy.name} at {spawnPos}");
 
                     var affinity = enemy.GetComponent<ElementalAffinity>();
                     if (affinity != null)
@@ -77,21 +67,16 @@ public class ArenaEnemySpawner : MonoBehaviour
                         affinity.Element = specialRound ? GetRandomElement() : currentElement;
 
                         var colorChange = enemy.GetComponent<ColorChange>();
-                        if (colorChange != null)
-                            colorChange.RefreshColor();
-                        else
-                            Debug.LogWarning("Enemy missing ColorChange component");
+                        if (colorChange != null) colorChange.RefreshColor();
+                        else Debug.LogWarning("Enemy missing ColorChange component");
                     }
-                    else
-                    {
-                        Debug.LogWarning("Enemy missing ElementalAffinity component");
-                    }
+                    else Debug.LogWarning("Enemy missing ElementalAffinity component");
 
-                    yield return new WaitForSeconds(0.2f);
+                    Debug.Log($"Spawned enemy {i + 1}/{enemiesToSpawn} (delay: {currentDelay}s)");
                 }
             }
 
-            // Check if round is over
+            // End-of-round check
             yield return new WaitForSeconds(1f);
             if (GameObject.FindGameObjectsWithTag("Enemy").Length == 0 &&
                 GameObject.FindGameObjectsWithTag("Boss").Length == 0)
@@ -101,6 +86,7 @@ public class ArenaEnemySpawner : MonoBehaviour
             }
         }
     }
+
 
     void CleanupEnemies()
     {

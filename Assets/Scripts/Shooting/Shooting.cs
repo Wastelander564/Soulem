@@ -44,7 +44,9 @@ public class Shooting : MonoBehaviour
             FinalDamage = damage * damageModifier; // fallback
         }
 
-        if (Input.GetMouseButtonDown(0) && Time.time >= lastFireTime + fireCooldown)
+        bool mouseHeld = Input.GetMouseButton(0);
+
+        if (mouseHeld && Time.time >= lastFireTime + fireCooldown)
         {
             if (Element != null)
             {
@@ -71,7 +73,8 @@ public class Shooting : MonoBehaviour
             }
         }
 
-        if (Input.GetMouseButtonUp(0) || menu.MenuActive == true)
+        // Stop continuous effects when releasing button or opening menu
+        if (Input.GetMouseButtonUp(0) || (menu != null && menu.MenuActive))
         {
             if (Element != null)
             {
@@ -90,4 +93,5 @@ public class Shooting : MonoBehaviour
             }
         }
     }
+
 }

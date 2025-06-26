@@ -37,12 +37,15 @@ public class Enemy : MonoBehaviour
         currentHP -= damage;
         currentHP = Mathf.Clamp(currentHP, 0, maxHP);
         //UpdateHealthUI();
-
         Debug.Log($"{gameObject.name} took {damage} damage, current HP: {currentHP}/{maxHP}");
-
         if (currentHP <= 0)
         {
             Die();
+        }
+        else
+        {
+            // Scale down the enemy by 10% each time it takes damage
+            transform.localScale *= 0.9f; // This reduces the scale to 90% of its current size
         }
     }
 

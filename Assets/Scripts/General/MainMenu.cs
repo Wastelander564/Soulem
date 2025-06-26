@@ -14,7 +14,7 @@ public class MainMenu : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E)) // Check if the "E" key is pressed
+        if (Input.GetKeyDown(KeyCode.Tab)) // Check if the "E" key is pressed
         {
             MenuActive = !MainMenuObject.activeSelf;
             MainMenuObject.SetActive(MenuActive);
